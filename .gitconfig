@@ -1,0 +1,26 @@
+[user]
+	email = james@peachstreet.com 
+[credential]
+	helper = osxkeychain
+
+[alias]
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all	
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lolp = log --graph --decorate --pretty=oneline --abbrev-commit -p
+	fixup = commit --amend -C@
+	reword = commit --amend
+	followFile = "!f() { git log -p --abbrev-commit --pretty=oneline --follow \"$1\"; }; f"	
+	fileOrigin = "!f() { git log -p --abbrev-commit --pretty=oneline --reverse --follow \"$1\"; }; f"	
+	searchCommits = "!f() { git log --abbrev-commit --pretty=oneline -S \"$1\" -c; }; f"
+	searchCommitsFile = "!f() { git log --abbrev-commit --pretty=oneline -S \"$1\" --follow \"$2\"; }; f"
+	findFileC = "!f() { git log --abbrev-commit --pretty=oneline -S \"$1\" -c --follow \"$2\"; }; f"
+	s = "!f() { git show --abbrev-commit --pretty=oneline \"$1\" -c; }; f"
+	followLine = "!f() { git lolp -L \"$1,$2:$3\"; }; f"
+	g = grep --break --heading --line-number
+	stashgrep = "!f() { for i in `git stash list --format=\"%gd\"` ; \
+              do git stash show -p $i | grep -H --label=\"$i\" \"$@\" ; done ; }; f"
+
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX # https://github.com/so-fancy/diff-so-fancy 
+[grep]
+	lineNumber = true
